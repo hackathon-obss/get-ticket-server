@@ -98,7 +98,7 @@ def createTimeData():
     return clf
 
 def trainSubeData(timeClf):
-    """for i in range(1200):
+    for i in range(1200):
         sube1arriveTime = random.randint(0,15)
         sube2arriveTime = random.randint(0,15)
         islemTipi = random.randint(1,4)
@@ -115,13 +115,13 @@ def trainSubeData(timeClf):
             subeSecimi = 2
         trainData.append([sube1arriveTime, sube2arriveTime, predictedTime[0], sube1totalTime, sube2totalTime, subeSecimi])
     print("train data creation has ended")
-    print_to_new_file("subeData.txt","")
+    """print_to_new_file("subeData.txt","")
     for item in trainData:
-        append_to_file("subeData.txt", str(item))"""
+        append_to_file("subeData.txt", str(item))
     lines = read_lines_from_file("subeData.txt")
     for line in lines:
         line = line.replace("[","").replace("]","").replace(" ","").replace("\n","").split(",")
-        trainData.append([int(line[0]),int(line[1]),int(line[2]),int(line[3]),int(line[4]),int(line[5])])
+        trainData.append([int(line[0]),int(line[1]),int(line[2]),int(line[3]),int(line[4]),int(line[5])])"""
     values = []
     result = []
     for item in trainData:
@@ -134,8 +134,8 @@ def trainSubeData(timeClf):
     _hiddenLayerSize = 	(50,100,)
     clf = MLPClassifier(solver=_solver, alpha=_alpha, hidden_layer_sizes=_hiddenLayerSize)
     clf.fit(trainValuesNpArray, trainResultNpArray)
-
-    predicted = clf.predict(array([[10, 15, 15, 0, 0]]))
+    return clf
+    """predicted = clf.predict(array([[10, 15, 15, 0, 0]]))
     print(predicted)
     predicted = clf.predict(array([[0, 2, 15, 15, 0]]))
     print(predicted)
@@ -144,13 +144,24 @@ def trainSubeData(timeClf):
     predicted = clf.predict(array([[10, 9, 15, 40, 15]]))
     print(predicted)
     predicted = clf.predict(array([[13, 7, 16, 40, 30]]))
-    print(predicted)
+    print(predicted)"""
+
+def algoQueue(lst):
+    i = len(lst)
+    while i > 0 && lst[i].eta > 5:
+        if lst[i].eta + lst[i].predictTime < lst[i-1].eta:
+            temp = lst[i]
+            lst[i] = lst[i-1]
+            lst[i-1] = temp
+            temp2 = lst[i].lNo
+            lst[i].lNo = lst[i-1].lNo
+            lst[i-1].lNo = temp2
+
 
 
 
 def main():
     timeClf = createTimeData()
-    trainSubeData(timeClf)
-    #print(timeClf.predict(array([[60, 2]])))
+    subeClf = trainSubeData(timeClf)
 
 main()
