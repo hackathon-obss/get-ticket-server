@@ -29,6 +29,7 @@ def add_user():
     eta2 = request.form['eta2']
     operation = request.form['operation']
     users[uid] = User(uid, eta1, eta2, operation)
+	#sube predictinden once kullanicinin yasiyla sure predict edilip sube icin o verilecek
     sube = str(subeClf.predict(array([[int(eta1), int(eta2), int(operation), sube_total_time(1), sube_total_time(2)]]))[0])
     user_sube[uid] = UserSube(uid, sube, operation)
     return 'sube:' + sube
