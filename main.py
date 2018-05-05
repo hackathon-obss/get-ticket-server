@@ -1,7 +1,8 @@
 from flask import Flask, request
 from numpy import array
 
-from subeDataCreation import trainSubeData
+from newML import createTimeData
+from newML import trainSubeData
 from user import User
 from user_sube import UserSube
 
@@ -48,5 +49,6 @@ def update_eta():
 
 
 if __name__ == '__main__':
-    clf = trainSubeData()
+    timeClf = createTimeData()
+    subeClf = trainSubeData(timeClf)
     app.run(host='0.0.0.0')

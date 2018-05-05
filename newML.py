@@ -145,7 +145,7 @@ def trainSubeData(timeClf):
     print(predicted)
     predicted = clf.predict(array([[13, 7, 16, 40, 30]]))
     print(predicted)"""
-
+"""
 def algoQueue(lst):
     i = len(lst)
     while i > 0 && lst[i].eta > 5:
@@ -156,7 +156,7 @@ def algoQueue(lst):
             temp2 = lst[i].lNo
             lst[i].lNo = lst[i-1].lNo
             lst[i-1].lNo = temp2
-
+"""
 
 
 
