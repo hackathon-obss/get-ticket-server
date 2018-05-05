@@ -39,7 +39,6 @@ def getSubeEstimationTime(lst):
     return time
 
 def trainSubeData():
-    print_to_new_file("allData.txt","")
 
     for i in range(1000):
         sube1arriveTime = random.randint(0,15)
@@ -56,8 +55,6 @@ def trainSubeData():
             subeSecimi = 2
         trainData.append([sube1arriveTime, sube2arriveTime, islemTipi, sube1totalTime, sube2totalTime, subeSecimi])
     print("train data creation has ended")
-    for dt in trainData:
-        append_to_file("allData.txt", str(dt))
     """lines = read_lines_from_file("allData1.txt")
     for line in lines:
         line = line.replace("[","").replace("]","").replace(" ","").replace("\n","").split(",")
@@ -75,27 +72,9 @@ def trainSubeData():
     _hiddenLayerSize = 	(50,50,)
     clf = MLPClassifier(solver=_solver, alpha=_alpha, hidden_layer_sizes=_hiddenLayerSize)
     clf.fit(trainValuesNpArray, trainResultNpArray)
-    print("train has ended")
-    """predicted = clf.predict(array([[2, 3, 3, 0, 0]]))
-    print(predicted)
-    predicted = clf.predict(array([[15, 0, 1, 15, 0]]))
-    print(predicted)
-    predicted = clf.predict(array([[0, 0, 4, 15, 5]]))
-    print(predicted)
-    predicted = clf.predict(array([[13, 6, 1, 15, 25]]))
-    print(predicted)
-    predicted = clf.predict(array([[5, 10, 2, 20, 25]]))
-    print(predicted)
+    return clf
 
-    predicted = clf.predict(array([[8, 5, 4, 30, 25]]))
-    print(predicted)
-    predicted = clf.predict(array([[4, 5, 4, 30, 45]]))
-    print(predicted)
-    predicted = clf.predict(array([[13, 9, 1, 50, 45]]))
-    print(predicted)
-    predicted = clf.predict(array([[1, 12, 1, 50, 50]]))
-    print(predicted)
-    predicted = clf.predict(array([[4, 14, 2, 55, 50]]))
+    """predicted = clf.predict(array([[2, 3, 3, 0, 0]]))
     print(predicted)"""
 
 def calculateSubeValue(lst, subeNo):
