@@ -25,14 +25,14 @@ def add_user():
     operation = request.form['operation']
     users[uid] = User(uid, eta1, eta2, operation)
     user_sube[uid] = UserSube(uid, 'sube')
-    return uid
+    return 'uid:' + uid
 
 
 @app.route('/eta', methods=['PUT'])
-def update_etas():
+def update_eta():
     old_eta = user_sube[request.form['uid']].eta
     user_sube[request.form['uid']].eta = request.form['eta']
-    return old_eta
+    return 'old_eta:' + old_eta
 
 
 if __name__ == '__main__':
