@@ -1,12 +1,14 @@
 from flask import Flask, request
 
 from user import User
+from user_sube import UserSube
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
 
 users = {}
+user_sube = {}
 
 
 @app.route('/user', methods=['GET'])
@@ -22,16 +24,15 @@ def add_user():
     eta2 = request.form['eta2']
     operation = request.form['operation']
     users[uid] = User(uid, eta1, eta2, operation)
+    user_sube[uid] = UserSube(uid, 'sube', 'eta')
     return uid
 
 
-@app.route('/etas', methods=['PUT'])
+@app.route('/eta', methods=['PUT'])
 def update_etas():
-    uid = request.form['uid']
-    user = users[uid]
-    user.eta1 = request.form['eta1']
-    user.eta2 = request.form['eta2']
-    return uid
+    old_eta = user_sube[request.form['uid']].eta
+    user_sube[request.form['uid']].eta = request.form['eta']
+    return old_eta
 
 
 if __name__ == '__main__':
