@@ -14,7 +14,7 @@ user_sube = {}
 @app.route('/user', methods=['GET'])
 def get_user():
     user = users[request.args.get('uid')]
-    return 'uid:' + user.uid + '\neta1:' + user.eta1 + '\neta1:' + user.eta1 + '\noperation:' + user.operation
+    return 'uid:' + user.uid + '\neta1:' + user.eta1 + '\neta2:' + user.eta1 + '\noperation:' + user.operation
 
 
 @app.route('/user', methods=['POST'])
