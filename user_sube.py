@@ -1,5 +1,5 @@
 class UserSube:
-    def __init__(self, uid, sube, eta):
+    def __init__(self, uid, sube):
         self.uid = uid
         self.sube = sube
-        self.eta = eta
+        self.eta = '0'

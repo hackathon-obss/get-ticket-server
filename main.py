@@ -24,7 +24,7 @@ def add_user():
     eta2 = request.form['eta2']
     operation = request.form['operation']
     users[uid] = User(uid, eta1, eta2, operation)
-    user_sube[uid] = UserSube(uid, 'sube', 'eta')
+    user_sube[uid] = UserSube(uid, 'sube')
     return uid
 
 
