@@ -37,7 +37,7 @@ def add_user():
     user.time = time
     sube = str(subeClf.predict(array([[int(eta1), int(eta2), int(time), sube_total_time(1), sube_total_time(2)]]))[0])
     user.sube = sube
-    if sube is '1':
+    if sube == '1':
         user.no = len(sube1)
         sube1.append(user)
         algoQueue(sube1, '1')
@@ -51,9 +51,12 @@ def add_user():
 
 def sube_total_time(sube_number):
     total_time = 0
-    for uid in user_sube:
-        if user_sube[uid].sube is sube_number:
-            total_time = total_time + int(user_sube[uid].operation) * 5
+    if sube_number == 1:
+        for user in sube1:
+            total_time = total_time + user.time
+    else:
+        for user in sube2:
+            total_time = total_time + user.time
     return total_time
 
 
@@ -66,13 +69,13 @@ def update_eta():
     if sube == '1':
         user.eta1 = request.form['eta']
         for user_in_sube in sube1:
-            if user_in_sube.uid is user.uid:
+            if user_in_sube.uid == user.uid:
                 user_in_sube.eta1 = request.form['eta']
         algoQueue(sube1, '1')
     else:
         user.eta2 = request.form['eta']
         for user_in_sube in sube2:
-            if user_in_sube.uid is user.uid:
+            if user_in_sube.uid == user.uid:
                 user_in_sube.eta2 = request.form['eta']
         algoQueue(sube2, '2')
     return 'old_eta:' + old_eta
@@ -83,10 +86,10 @@ def get_line_no():
     uid = request.args.get('uid')
     for item in sube1:
         if item.uid == uid:
-            return "lineNo:" + item.no
+            return "lineNo:" + str(item.no)
     for item in sube2:
         if item.uid == uid:
-            return "lineNo:" + item.no
+            return "lineNo:" + str(item.no)
 
 
 if __name__ == '__main__':
