@@ -100,7 +100,7 @@ def get_line_no():
             return "lineNo:" + str(item.no)
 
 
-@app.route('/user', methods=['DELETE'])
+@app.route('/userx', methods=['POST'])
 def delete_user():
     uid = request.form['uid']
     del users[uid]
