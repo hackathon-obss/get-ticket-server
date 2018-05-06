@@ -1,7 +1,7 @@
 from flask import Flask, request
 from numpy import array
 
-from newML import algoQueue
+from newML import algoQueue, createTimeData, trainSubeData
 from user import User
 from user_sube import UserSube
 
