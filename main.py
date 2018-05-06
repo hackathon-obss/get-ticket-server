@@ -1,7 +1,7 @@
 from flask import Flask, request
 from numpy import array
 
-from newML import createTimeData
+from newML import createTimeData, algoQueue
 from newML import trainSubeData
 from user import User
 from user_sube import UserSube
@@ -14,6 +14,8 @@ timeClf = None
 subeClf = None
 users = {}
 user_sube = {}
+sube1 = []
+sube2 = []
 
 
 @app.route('/user', methods=['GET'])
@@ -29,9 +31,20 @@ def add_user():
     eta2 = request.form['eta2']
     operation = request.form['operation']
     age = request.form['age']
-    users[uid] = User(uid, eta1, eta2, operation, age)
+    user = User(uid, eta1, eta2, operation, age)
+    users[uid] = user
     time = timeClf.predict(array([[int(age), int(operation)]]))[0]
+    user.time = time
     sube = str(subeClf.predict(array([[int(eta1), int(eta2), int(time), sube_total_time(1), sube_total_time(2)]]))[0])
+    user.sube = sube
+    if sube is '1':
+        user.no = len(sube1)
+        sube1.append(user)
+        algoQueue(sube1, '1')
+    else:
+        user.no = len(sube2)
+        sube2.append(user)
+        algoQueue(sube2, '2')
     user_sube[uid] = UserSube(uid, sube, operation)
     return 'sube:' + sube
 

@@ -5,3 +5,11 @@ class User:
         self.eta2 = eta2
         self.operation = operation
         self.age = age
+        self.no = None
+        self.time = None
+        self.sube = None
+
+    def get_eta(self):
+        if self.sube is '1':
+            return self.eta1
+        return self.eta2
