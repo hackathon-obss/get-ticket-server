@@ -100,6 +100,20 @@ def get_line_no():
             return "lineNo:" + str(item.no)
 
 
+@app.route('/user', methods=['DELETE'])
+def delete_user():
+    uid = request.form['uid']
+    del users[uid]
+    del user_sube[uid]
+    for user in sube1:
+        if user.uid == uid:
+            sube1.remove(user)
+    for user in sube1:
+        if user.uid == uid:
+            sube1.remove(user)
+    return uid
+
+
 if __name__ == '__main__':
     timeClf = createTimeData()
     subeClf = trainSubeData(timeClf)
