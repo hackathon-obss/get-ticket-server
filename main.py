@@ -124,8 +124,10 @@ def delete_user():
 
 
 def printQueues():
-    print(sube1)
-    print(sube2)
+    for user in sube1:
+	    print("ID: ", user.uid, " LINENO: ", user.no)
+	for user in sube2:
+	    print("ID: ", user.uid, " LINENO: ", user.no)
 
 
 if __name__ == '__main__':
