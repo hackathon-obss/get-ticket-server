@@ -49,10 +49,10 @@ def add_user():
 
     for item in sube1:
         if item.uid == uid:
-            return '{sube:' + sube + ",lineNo:" + item.no + '}'
+            return '{sube:' + sube + ",lineNo:" + str(item.no) + '}'
     for item in sube2:
         if item.uid == uid:
-            return '{sube:' + sube + ",lineNo:" + item.no + '}'
+            return '{sube:' + sube + ",lineNo:" + str(item.no) + '}'
 
     return 'sube:' + sube
 
