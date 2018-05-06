@@ -62,7 +62,16 @@ def update_eta():
     old_eta = user_sube[request.form['uid']].eta
     user_sube[request.form['uid']].eta = request.form['eta']
     return 'old_eta:' + old_eta
-
+	
+@app.route('/lineNo', methods=['GET'])
+def get_line_no():
+	uid = request.args.get('uid')
+	for item in sube1:
+		if item.uid == uid:
+			return "lineNo:" + item.no
+	for item in sube2:
+		if item.uid == uid:
+			return "lineNo:" + item.no
 
 if __name__ == '__main__':
     timeClf = createTimeData()
