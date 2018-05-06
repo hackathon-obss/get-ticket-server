@@ -117,17 +117,17 @@ def delete_user():
     for user in sube1:
         if user.uid == uid:
             sube1.remove(user)
-    for user in sube1:
+    for user in sube2:
         if user.uid == uid:
-            sube1.remove(user)
+            sube2.remove(user)
     return uid
 
 
 def printQueues():
     for user in sube1:
-        print("ID: ", user.uid, " LINENO: ", user.no)
+        print("ID: ", user.uid, " LINENO: ", user.no, " user sube no:", user.sube)
     for user in sube2:
-        print("ID: ", user.uid, " LINENO: ", user.no)
+        print("ID: ", user.uid, " LINENO: ", user.no, " user sube no:", user.sube)
 
 
 if __name__ == '__main__':
