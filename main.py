@@ -15,6 +15,9 @@ users = {}
 user_sube = {}
 sube1 = []
 sube2 = []
+size = {}
+size['1'] = 0
+size['2'] = 0
 
 
 @app.route('/user', methods=['GET'])
@@ -38,11 +41,13 @@ def add_user():
     sube = str(subeClf.predict(array([[int(eta1), int(eta2), int(time), sube_total_time(1), sube_total_time(2)]]))[0])
     user.sube = sube
     if sube == '1':
-        user.no = len(sube1)
+        user.no = size['1']
+        size['1'] = size['1'] + 1
         sube1.append(user)
         algoQueue(sube1, '1')
     else:
-        user.no = len(sube2)
+        user.no = size['2']
+        size['2'] = size['2'] + 1
         sube2.append(user)
         algoQueue(sube2, '2')
     user_sube[uid] = UserSube(uid, sube, operation)
