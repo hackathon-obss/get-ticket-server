@@ -81,11 +81,13 @@ def update_eta():
     user_sube[request.form['uid']].eta = request.form['eta']
     user = users[request.form['uid']]
     sube = user.sube
+    lineNo = -1
     if sube == '1':
         user.eta1 = request.form['eta']
         for user_in_sube in sube1:
             if user_in_sube.uid == user.uid:
                 user_in_sube.eta1 = request.form['eta']
+                lineNo = user.no
         algoQueue(sube1, '1')
         printQueues()
     else:
@@ -93,9 +95,10 @@ def update_eta():
         for user_in_sube in sube2:
             if user_in_sube.uid == user.uid:
                 user_in_sube.eta2 = request.form['eta']
+                lineNo = user.no
         algoQueue(sube2, '2')
         printQueues()
-    return 'old_eta:' + old_eta
+    return "{lineNo:" + lineNo + "}"
 
 
 @app.route('/lineNo', methods=['GET'])
