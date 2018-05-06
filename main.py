@@ -20,7 +20,8 @@ sube2 = []
 @app.route('/user', methods=['GET'])
 def get_user():
     user = users[request.args.get('uid')]
-    return 'uid:' + user.uid + '\neta1:' + user.eta1 + '\neta2:' + user.eta1 + '\noperation:' + user.operation
+    return 'uid:' + user.uid + '\neta1:' + user.eta1 + '\neta2:' + user.eta2 + '\noperation:' + user.operation \
+           + '\nage:' + user.age
 
 
 @app.route('/user', methods=['POST'])
@@ -62,7 +63,7 @@ def update_eta():
     user_sube[request.form['uid']].eta = request.form['eta']
     user = users[request.form['uid']]
     sube = user.sube
-    if sube is '1':
+    if sube == '1':
         user.eta1 = request.form['eta']
         for user_in_sube in sube1:
             if user_in_sube.uid is user.uid:
