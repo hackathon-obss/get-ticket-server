@@ -98,7 +98,7 @@ def update_eta():
                 lineNo = user.no
         algoQueue(sube2, '2')
         printQueues()
-    return "{lineNo:" + lineNo + "}"
+    return "{lineNo:" + str(lineNo) + "}"
 
 
 @app.route('/lineNo', methods=['GET'])
