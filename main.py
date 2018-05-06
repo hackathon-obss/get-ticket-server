@@ -61,6 +61,20 @@ def sube_total_time(sube_number):
 def update_eta():
     old_eta = user_sube[request.form['uid']].eta
     user_sube[request.form['uid']].eta = request.form['eta']
+	user = users[request.form['uid']]
+	sube = user.sube
+	if sube is '1':
+		user.eta1 = request.form['eta']
+		for user in sube1:
+			if user.uid is uid:
+				user.eta1 = request.form['eta']
+		algoQueue(sube1, '1')
+	else:
+		user.eta2 = request.form['eta']
+		for user in sube2:
+			if user.uid is uid:
+				user.eta2 = request.form['eta']
+		algoQueue(sube2, '2')
     return 'old_eta:' + old_eta
 	
 @app.route('/lineNo', methods=['GET'])
