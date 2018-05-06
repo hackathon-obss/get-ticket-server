@@ -45,12 +45,14 @@ def add_user():
         size['1'] = size['1'] + 1
         sube1.append(user)
         algoQueue(sube1, '1')
+		printQueues()
     else:
         user.no = size['2']
         size['2'] = size['2'] + 1
         sube2.append(user)
         algoQueue(sube2, '2')
-    user_sube[uid] = UserSube(uid, sube, operation)
+		printQueues()
+	user_sube[uid] = UserSube(uid, sube, operation)
 
     for item in sube1:
         if item.uid == uid:
@@ -85,12 +87,14 @@ def update_eta():
             if user_in_sube.uid == user.uid:
                 user_in_sube.eta1 = request.form['eta']
         algoQueue(sube1, '1')
-    else:
+		printQueues()
+	else:
         user.eta2 = request.form['eta']
         for user_in_sube in sube2:
             if user_in_sube.uid == user.uid:
                 user_in_sube.eta2 = request.form['eta']
         algoQueue(sube2, '2')
+		printQueues()
     return 'old_eta:' + old_eta
 
 
@@ -118,6 +122,9 @@ def delete_user():
             sube1.remove(user)
     return uid
 
+def printQueues():
+	print(sube1)
+	print(sube2)
 
 if __name__ == '__main__':
     timeClf = createTimeData()
