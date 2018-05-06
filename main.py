@@ -1,7 +1,7 @@
 from flask import Flask, request
 from numpy import array
 
-from newML import algoQueue, createTimeData, trainSubeData
+from newML import algoQueue
 from user import User
 from user_sube import UserSube
 
@@ -46,6 +46,14 @@ def add_user():
         sube2.append(user)
         algoQueue(sube2, '2')
     user_sube[uid] = UserSube(uid, sube, operation)
+
+    for item in sube1:
+        if item.uid == uid:
+            return '{sube:' + sube + ",lineNo:" + item.no + '}'
+    for item in sube2:
+        if item.uid == uid:
+            return '{sube:' + sube + ",lineNo:" + item.no + '}'
+
     return 'sube:' + sube
 
 
