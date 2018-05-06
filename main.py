@@ -46,6 +46,14 @@ def add_user():
         sube2.append(user)
         algoQueue(sube2, '2')
     user_sube[uid] = UserSube(uid, sube, operation)
+	
+	for item in sube1:
+		if item.uid == uid:
+			return 'sube:' + sube + ",lineNo:" + item.no + '}'
+	for item in sube2:
+		if item.uid == uid:
+			return '{sube:' + sube + ",lineNo:" + item.no + '}'
+			
     return 'sube:' + sube
 
 
@@ -61,8 +69,8 @@ def sube_total_time(sube_number):
 def update_eta():
     old_eta = user_sube[request.form['uid']].eta
     user_sube[request.form['uid']].eta = request.form['eta']
-	user = users[request.form['uid']]
-	sube = user.sube
+    user = users[request.form['uid']]
+    sube = user.sube
 	if sube is '1':
 		user.eta1 = request.form['eta']
 		for user in sube1:
