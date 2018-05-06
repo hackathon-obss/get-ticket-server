@@ -1,8 +1,7 @@
 from flask import Flask, request
 from numpy import array
 
-from newML import createTimeData, algoQueue
-from newML import trainSubeData
+from newML import algoQueue, createTimeData, trainSubeData
 from user import User
 from user_sube import UserSube
 
@@ -61,31 +60,33 @@ def sube_total_time(sube_number):
 def update_eta():
     old_eta = user_sube[request.form['uid']].eta
     user_sube[request.form['uid']].eta = request.form['eta']
-	user = users[request.form['uid']]
-	sube = user.sube
-	if sube is '1':
-		user.eta1 = request.form['eta']
-		for user in sube1:
-			if user.uid is uid:
-				user.eta1 = request.form['eta']
-		algoQueue(sube1, '1')
-	else:
-		user.eta2 = request.form['eta']
-		for user in sube2:
-			if user.uid is uid:
-				user.eta2 = request.form['eta']
-		algoQueue(sube2, '2')
+    user = users[request.form['uid']]
+    sube = user.sube
+    if sube is '1':
+        user.eta1 = request.form['eta']
+        for user_in_sube in sube1:
+            if user_in_sube.uid is user.uid:
+                user_in_sube.eta1 = request.form['eta']
+        algoQueue(sube1, '1')
+    else:
+        user.eta2 = request.form['eta']
+        for user_in_sube in sube2:
+            if user_in_sube.uid is user.uid:
+                user_in_sube.eta2 = request.form['eta']
+        algoQueue(sube2, '2')
     return 'old_eta:' + old_eta
-	
+
+
 @app.route('/lineNo', methods=['GET'])
 def get_line_no():
-	uid = request.args.get('uid')
-	for item in sube1:
-		if item.uid == uid:
-			return "lineNo:" + item.no
-	for item in sube2:
-		if item.uid == uid:
-			return "lineNo:" + item.no
+    uid = request.args.get('uid')
+    for item in sube1:
+        if item.uid == uid:
+            return "lineNo:" + item.no
+    for item in sube2:
+        if item.uid == uid:
+            return "lineNo:" + item.no
+
 
 if __name__ == '__main__':
     timeClf = createTimeData()
